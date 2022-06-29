@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Text))]
+
 public class Counter : MonoBehaviour
 {
     [SerializeField] private Transform _rats;

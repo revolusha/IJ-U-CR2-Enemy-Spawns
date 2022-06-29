@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RatSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _ratPrefab;
+    [SerializeField] private Rat _prefab;
     [SerializeField] private Transform _path;
     [SerializeField] private Transform _spawns;
     [SerializeField] private float _timeInterval = 2f;
@@ -43,10 +43,9 @@ public class RatSpawner : MonoBehaviour
 
         int index = Random.Range(0, _spawns.childCount);
 
-        GameObject rat = Instantiate(_ratPrefab, _spawns.GetChild(index).position, Quaternion.identity, transform);
+        var rat = Instantiate(_prefab, _spawns.GetChild(index).position, Quaternion.identity, transform);
         rat.GetComponent<CircleCollider2D>().isTrigger = true;
-        Rat ratClass = rat.GetComponent<Rat>();
-        ratClass.KillAfter(Random.Range(MinLifeTime, MaxLifeTime));
-        ratClass.SetPath(_path);
+        rat.KillAfter(Random.Range(MinLifeTime, MaxLifeTime));
+        rat.SetPath(_path);
     }
 }

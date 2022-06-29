@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypoint : MonoBehaviour
@@ -8,7 +6,7 @@ public class Waypoint : MonoBehaviour
 
     public Waypoint Target { get; private set; }
 
-    void Start()
+    private void Start()
     {
         if (_target != null)
             Target = _target;

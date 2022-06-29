@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,20 @@ public class Counter : MonoBehaviour
     private void Start()
     {
         _text = GetComponent<Text>();
+        StartCoroutine(UpdateRatCount());
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        _count = _rats.childCount;
-        _text.text = "Rats: " + _count;
+        StopCoroutine(UpdateRatCount());
+    }
+
+    private IEnumerator UpdateRatCount()
+    {
+        const float UpdateFrequency = 1f;
+
+        yield return new WaitForSeconds(UpdateFrequency);
+        _text.text = "Rats: " + _rats.childCount;
+        StartCoroutine(UpdateRatCount());
     }
 }
